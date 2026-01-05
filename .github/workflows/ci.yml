@@ -1,0 +1,35 @@
+name: CI Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run a simple command
+      run: echo "Hello from GitHub Actions!"
+      
+    - name: Display system info
+      run: |
+        echo "Running on $(uname -s)"
+        echo "Current directory: $(pwd)"
+        echo "Current user: $(whoami)"
+        
+    - name: Create a test file
+      run: |
+        echo "This is a test file created by GitHub Actions" > test-output.txt
+        cat test-output.txt
+        
+    - name: Run tests (placeholder)
+      run: |
+        echo "Running tests..."
+        echo "All tests passed! ✓"
